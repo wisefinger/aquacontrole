@@ -6,10 +6,10 @@ from utils.pump import init
 from logger import Logger
 from ActionLogger import ActionLogger
 
-print(f'{datetime.now()} start main aquacontrole module....................................................')
+print(f'{datetime.now()} start main aquacontrole module ....................................................')
 
 
-actionlogger = ActionLogger;
+actionlogger = ActionLogger();
 print(actionlogger.x)
 
 
@@ -20,7 +20,8 @@ init()
 
 # get last rundate from logfile
 try:
-    last_date_run = datetime.strptime(log.getlatest(), "%d/%m/%Y:%X")
+#    last_date_run = datetime.strptime(log.getlatest(), datetime.now().strftime("%d/%m/%Y:%X"))
+    None
 except TypeError:
     # Set last run to day -1 to make sure the task will run
     last_date_run = datetime.today() - timedelta(days=1)

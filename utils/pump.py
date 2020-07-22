@@ -1,4 +1,3 @@
-print("start pump program.....................")
 #import RPi.GPIO as GPIO
 import time
 from datetime import datetime
