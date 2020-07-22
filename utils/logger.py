@@ -3,12 +3,12 @@ class Logger:
     # append data at the end of the logfile
     def log(self,datetime):
         print(f'Writing to logfile = {datetime}')
-        with open('logging/action.log', 'a') as f:
+        with open('../logging/action.log', 'a') as f:
             f.write(datetime.strftime("%d/%m/%Y:%X \n"))
 
     # get last 10 lines of the logfile
     def getlatest(self):
-        with open('logging/action.log', 'r') as f:
+        with open('../logging/action.log', 'r') as f:
             for last_line in f:
                 print(f'last time run {last_line}')
                 pass

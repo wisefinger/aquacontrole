@@ -3,14 +3,15 @@
 # purpose : Automate waterchange and measurements
 from datetime import datetime, timedelta
 from utils.pump import init
-from logger import Logger
-from ActionLogger import ActionLogger
+from utils.logger import Logger
+from utils.ActionLogger import ActionLogger
 
 print(f'{datetime.now()} start main aquacontrole module ....................................................')
-
-
+# Create an instance to log actions into the generic /logger/action.log
 actionlogger = ActionLogger();
-print(actionlogger.x)
+actionlogger.log("start main app.py")
+
+
 
 
 log = Logger()
@@ -37,4 +38,5 @@ else:
     print(">> program did not run yet today. Starting")
     log.log(datetime.now())
 
+actionlogger.log("stop main app.py")
 print(f'{datetime.now()} stop  main aquacontrole module....................................................')

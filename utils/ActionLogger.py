@@ -14,15 +14,10 @@ class ActionLogger:
         else:
             with open('logging/action.log', 'a') as f:
                 f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
-
-    def bb(self):
-        return self.x
-
-
-
+                f.write("\n")
     # append data at the end of the logfile
-    def log(self,datetime):
-        print(f'Writing to logfile = {datetime}')
+    def log(self,message):
         with open('logging/action.log', 'a') as f:
-            f.write(datetime.strftime("%d/%m/%Y:%X \n"))
+            f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: {message}')
+            f.write("\n")
 
