@@ -20,16 +20,18 @@ class PumpLogger:
 
     # get last the last rundate of the logfile
     def getlatest(self):
+
         with open('logging/pump.log', 'r') as f:
             for line in f:
                 line = line.strip(' \t\r\n')
-
                 if line.__contains__(('stop')):
-                    print(line)
-
+                    last_line = line
                 pass
         try:
-            return line
+            if last_line.__contains__(('stop')):
+                return last_line
+            else:
+                return None
         except UnboundLocalError:
             print('Empty logfile no previous history')
             return None
