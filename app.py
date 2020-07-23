@@ -6,7 +6,6 @@ import time
 from utils.Pump import Pump
 from utils.PumpLogger import PumpLogger
 from utils.ActionLogger import ActionLogger
-
 print(f'{datetime.now()} start main aquacontrole module ....................................................')
 # Create an instance to log actions into the generic /logger/action.log
 actionlogger = ActionLogger()
@@ -25,18 +24,19 @@ if pumplogger.getlatest() == None:
     time.sleep(5)
     pump.stop()
     pumplogger.log("stop pump")
-# If a previous date has been found check if the pump
-# was already started today. If not the case start the pump
-if pumplogger.getlatest() != None and datetime.now().strftime("%d/%m/%Y") != pumplogger.getlatest()[:-20] :
-        print('pump has not started today, action required')
-        pumplogger.log("start pump")
-        pump.start()
-        time.sleep(5)
-        pump.stop()
-        pumplogger.log("stop pump")
 else:
-        print('pump has been running today no action required')
-print('pump has been running today no action required')
+        # If a previous date has been found check if the pump
+        # was already started today. If not the case start the pump
+        if pumplogger.getlatest() != None and datetime.now().strftime("%d/%m/%Y") != pumplogger.getlatest()[:-20] :
+                print('pump has not started today, action required')
+                pumplogger.log("start pump")
+                pump.start()
+                time.sleep(5)
+                pump.stop()
+                pumplogger.log("stop pump")
+        else:
+                print('pump has been running today no action required')
+
 
 
 
