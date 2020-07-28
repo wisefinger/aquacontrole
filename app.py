@@ -7,6 +7,7 @@ import time
 from utils.TempSensor import TempSensor
 from utils.PumpLogger import PumpLogger
 from utils.ActionLogger import ActionLogger
+from utils.archive_file import archive
 print(f'{datetime.now()} start main aquacontrole module ....................................................')
 # Create an instance to log actions into the generic /logger/action.log
 actionlogger = ActionLogger()
@@ -28,12 +29,16 @@ while not stopsignal:
     print('> start controle loop ')
     # measure tempsensor 1
     print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
-
+    # archive all folders older then
+    try:
+        archive()
+    except FileExistsError:
+        print("file could not be archived, archived file already exists")
     print('> end controle loop ')
-    time.sleep(5)
+    time.sleep(60)
 else:
     exit()
-
+actionlogger.log("stop main app.py")
 
 
 
