@@ -1,6 +1,7 @@
+# Class responsible for managing temperature sensor
+import time
 from utils.TempLogger import TempLogger
-
-#Class responsible for managing temperature sensor
+from w1thermsensor import W1ThermSensor
 
 
 class TempSensor:
@@ -10,5 +11,8 @@ class TempSensor:
         pass
 
     def getTemp(self):
-        self.templogger.log("test")
-        return "25"
+        sensor = W1ThermSensor()
+        temperature = sensor.get_temperature()
+        # print("The temperature is %s °C" % temperature)
+        self.templogger.log(temperature)
+        return temperature
