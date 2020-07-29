@@ -35,7 +35,7 @@ while not stopsignal:
     except FileExistsError:
         print("file could not be archived, archived file already exists")
     print('> end controle loop ')
-    time.sleep(60)
+    time.sleep(60*10)
 else:
     exit()
 actionlogger.log("stop main app.py")
