@@ -8,8 +8,7 @@ from utils.TempSensor import TempSensor
 from utils.PumpLogger import PumpLogger
 from utils.ActionLogger import ActionLogger
 from utils.archive_file import archive
-
-print(f'{datetime.now()} start main aquacontrole module ....................................................')
+print(f"{datetime.now()} start main aquacontrole module.....................")
 # Create an instance to log actions into the generic /logger/action.log
 actionlogger = ActionLogger()
 actionlogger.log("start main app.py")
@@ -52,7 +51,7 @@ while not stopsignal:
             pumplogger.log("stop pump")
         else:
             print('pump has been running today no action required')
-    time.sleep(60)
+    time.sleep(300)
 else:
     exit()
 actionlogger.log("stop main app.py")
