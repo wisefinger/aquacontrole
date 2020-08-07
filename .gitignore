@@ -1,1 +1,6 @@
-logging
+logging/temp.log
+logging/pump.log
+logging/action.log
+transfer_queue/*
+transferred_files/*
+

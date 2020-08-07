@@ -22,17 +22,19 @@ def archive():
     # converting days to seconds
     # time.time() returns current time in seconds
     seconds = time.time() - (days * 24 * 60 * 60)
-    # print(f'current time in seconds : {seconds}')
-    # print(f'path defined : {path}')
+    #print(f'current time in seconds : {seconds}')
+    #print(f'path defined : {path}')
 
     # checking whether the file is present in path or not
     for filename in os.listdir(path):
         # checking the current directory files
 
-        # print(f'file: {filename}')
+        print(f'file: {filename}')
+        
+        
         # file path
         file_path = os.path.join(path, filename)
-
+        # print(f'filepath :{file_path}')
         fileseconds = os.stat(path + '/' + filename).st_ctime
         seconds_difference = seconds - fileseconds
         minutes_difference = seconds_difference / 60
@@ -47,5 +49,5 @@ def archive():
 
         if seconds >= os.stat(path + '/' + filename).st_ctime:
             print("file needs to be archived......")
-            os.rename(path + '/' + filename, './archive_logging/' + filename + '_' + date.today().__str__())
-
+            #os.rename(path + './' + filename, './archive_logging/' + filename + '_' + date.today().__str__())
+            os.rename(file_path, './archive_logging/' + filename + '_' + date.today().__str__())
