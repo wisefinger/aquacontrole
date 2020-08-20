@@ -29,10 +29,13 @@ while not stopsignal:
     print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
     # archive all folders older then
     try:
+        print("start archive from app.py")
         utils.archive_file.archive()
+        pass
     except FileExistsError:
         print("file could not be archived, archived file already exists")
-    print('> end controle loop ')
+    
+    #print('> end controle loop ')
 
     # Check if the daily water change has already ran today. If not start it now
     # First check if a previous date was found
@@ -52,7 +55,8 @@ while not stopsignal:
             pumplogger.log("stop pump")
         else:
             print('pump has been running today no action required')
-    time.sleep(300)
+    #time.sleep(300)
+    time.sleep(300)        
 else:
     exit()
 actionlogger.log("stop main app.py")
