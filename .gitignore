@@ -2,5 +2,6 @@ logging/temp.log
 logging/pump.log
 logging/action.log
 transfer_queue/*
+utils/__pycache__/*
 transferred_files/*
 
