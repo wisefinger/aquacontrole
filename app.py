@@ -1,6 +1,7 @@
 # author  : Kris & Seth Cardoen
 # created : 20/07/2020
 # purpose : Automate waterchange and measurements
+# update : 24/08/2020
 from datetime import datetime, timedelta
 import time
 from utils.Pump import Pump
@@ -43,7 +44,7 @@ while not stopsignal:
         print("No previous correct date was found, therefore pump is started")
         print('pump has not started today, action required')
         pumplogger.log("start pump")
-        pump.waterchange(10)
+        #pump.waterchange(10)
         pumplogger.log("stop pump")
     else:
         # If a previous date has been found check if the pump

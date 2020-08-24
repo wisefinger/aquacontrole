@@ -20,6 +20,7 @@ class Pump:
     GPIO.setmode(GPIO.BOARD)
     # configure pin number for relay switch     no spaces after the comma
     GPIO.setup(relay1, GPIO.OUT)
+    GPIO.setwarnings(False)
     # set pin to high
     GPIO.output(relay1, GPIO.HIGH)
 
