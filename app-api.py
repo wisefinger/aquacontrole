@@ -35,6 +35,18 @@ def sensors():
         else:
             'Nothing Found', 404
 
+    if request.method == 'POST':
+        new_id = request.form['id']
+        new_name = request.form['name']
+        new_type = request.form['type']
+
+        new_sensor = {
+            'id' : new_id,
+            'name' : new_name,
+            'type': new_type
+        }
+    sensor_list.append(new_sensor)
+    return  jsonify(sensor_list), 201
 
 if __name__ == '__main__':
     app.run(debug=True)
