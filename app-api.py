@@ -48,5 +48,33 @@ def sensors():
     sensor_list.append(new_sensor)
     return  jsonify(sensor_list), 201
 
+
+@app.route('/sensor/<int:id>', methods=['GET', 'PUT','DELETE'])
+def single_sensor(id):
+    if request.method == 'GET':
+        for sensor in sensor_list:
+            if sensor['id'] == id:
+                return jsonify(sensor)
+            pass
+    if request.method == 'PUT':
+        for sensor in sensor_list:
+            if sensor['id'] == id:
+                sensor['id'] =request.form['id'],
+                sensor['name'] = request.form['name'],
+                sensor['type'] = request.form['type']
+                updated_sensor = {
+                 'id': sensor['id'],
+                 'name': sensor['name'],
+                 'type': sensor['type']
+                }
+                return jsonify(updated_sensor)
+
+    if request.method == 'DELETE':
+        for index, sensor in enumerate(sensor_list):
+            if sensor['id'] == id:
+                sensor_list.pop(index)
+                return jsonify(sensor_list)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
