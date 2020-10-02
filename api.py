@@ -1,5 +1,8 @@
 # this python program will contain the code for a api controller
+
 from flask import Flask, redirect, render_template, request, url_for, jsonify
+from utils.TempSensor import TempSensor
+
 
 app = Flask(__name__)
 
@@ -30,6 +33,7 @@ sensor_list = [
 @app.route('/sensors', methods=['GET', 'POST'] )
 def sensors():
     if request.method == 'GET':
+        print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
         if len(sensor_list) > 0:
             return jsonify(sensor_list)
         else:
@@ -47,6 +51,19 @@ def sensors():
         }
     sensor_list.append(new_sensor)
     return  jsonify(sensor_list), 201
+
+
+@app.route('/getdatastream/<int:id>', methods=['GET', 'POST'] )
+def getdatastream(id):
+        if request.method == 'GET':
+            
+          
+            sensor = TempSensor(f'{id}')
+            datastream = sensor.getTemp()
+            if len(datastream) > 0:
+                return jsonify(datastream)
+            else:
+                'Nothing Found', 404
 
 
 @app.route('/sensor/<int:id>', methods=['GET', 'PUT','DELETE'])
