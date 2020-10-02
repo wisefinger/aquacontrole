@@ -10,11 +10,13 @@ class TempLogger:
             None
         else:
             with open('logging/temp.log', 'a') as f:
-                f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
-                f.write("\n")
+                #f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
+                #f.write("\n")
+                pass
     # append data at the end of the logfile
     def log(self,message):
         with open('logging/temp.log', 'a') as f:
-            f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: {message}')
+            #f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: {message}')
+            f.write(f'{message}')
             f.write("\n")
 

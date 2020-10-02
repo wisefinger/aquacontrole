@@ -17,13 +17,15 @@ class TempSensor:
         sensor = W1ThermSensor()
         temperature = sensor.get_temperature()
         # print("The temperature is %s °C" % temperature)
-        self.templogger.log(temperature)
+        #self.templogger.log(temperature)
         self.data["sensorid"] = self.name
         self.data["unit"] = "Celcius"
         self.data["value"] = temperature
         self.data["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        self.templogger.log(self.data)
         return  self.data
 
-
+    def close(self):
+        GPIO.cleanup()
 
   
