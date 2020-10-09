@@ -1,5 +1,6 @@
 # this python program will contain the code for a api controller
 from flask import Flask, redirect, render_template, request, url_for, jsonify
+from flask_cors import CORS, cross_origin
 from utils.TempSensor import TempSensor
 from utils.Pump import Pump
 
@@ -7,13 +8,14 @@ app = Flask(__name__)
 
 # code to handle datastream calls
 @app.route('/datastream/<int:id>', methods=['GET'] )
+@cross_origin() # allow all origins all methods.
 def datastream(id):
         if request.method == 'GET':
                       
             sensor = TempSensor(f'{id}')
             datastream = sensor.getTemp()
             if len(datastream) > 0:
-                return jsonify(datastream)
+                return jsonify([datastream])
             else:
                 'Nothing Found', 404
             datastream.close()
@@ -109,4 +111,5 @@ def sensors():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(host='192.168.0.223')
