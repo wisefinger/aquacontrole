@@ -31,7 +31,7 @@ while not stopsignal:
     # measure tempsensor 1
     #print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
     # archive all folders older then
-    r =requests.get("http://127.0.0.1:5000/datastream/1")
+    r =requests.get("http://192.168.0.223:5000/datastream/1")
     print(f'request :{r.request} ')
     print(f'status code :{r.status_code}')
     print(f'headers :{r.headers}')
