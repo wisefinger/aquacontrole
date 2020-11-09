@@ -6,6 +6,28 @@ from utils.Pump import Pump
 
 app = Flask(__name__)
 
+#load sensor data
+sensor_list = [
+    {
+        "id" : "0517a2b17bff",
+        "name" : "temp5" ,
+        "type" : "temperature",
+        "location" : "discus rack below",
+        "unit" : "degree Celcius"
+    },
+    {
+        "id": "0220104528b1",
+        "name": "temp3",
+        "type": "temperature",
+        "location": "barrel",
+        "unit": "degree Celcius"
+    }
+
+    ]
+
+
+
+
 # code to handle datastream calls
 @app.route('/datastream/<int:id>', methods=['GET'] )
 @cross_origin() # allow all origins all methods.
@@ -36,27 +58,7 @@ def pumpaction(duration):
                 'Nothing Found', 404
             
 
-# example code
-sensor_list = [
-    {
-        "id" : 0,
-        "name" : "sensor1" ,
-        "type" : "temperature"
 
-    },
-    {
-        "id": 1,
-        "name": "sensor2",
-        "type": "temperature"
-
-    },
-    {
-        "id": 2,
-        "name": "senjsor3",
-        "type": "TDS"
-
-    }
-    ]
 
 
 
