@@ -1,5 +1,5 @@
 from w1thermsensor import W1ThermSensor
-#from utils.TempSensor import TempSensor
+
 
 
 print("start sensordiagnostic..........................")
