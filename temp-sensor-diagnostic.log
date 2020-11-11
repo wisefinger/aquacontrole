@@ -1,0 +1,9 @@
+start sensordiagnostic..........................
+checking for available temperature sensors
+you can check your connected sensors via ls -ltr in /sys/bus/w1/devices  on your pi
+Sensor 0301a2793e33 has temperature 33.88
+Sensor 0301a279ec7d has temperature 23.06
+Sensor 0220104528b1 has temperature 24.06
+Sensor 0517a2b17bff has temperature 28.69
+Sensor 0301a279830b has temperature 28.88
+end sensordiagnostic..........................

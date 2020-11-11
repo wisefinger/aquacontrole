@@ -43,24 +43,20 @@ def datastream(id):
             datastream.close()
             
 # code to handle pump actions
-@app.route('/pumpaction/<int:duration>', methods=['GET'] )
-def pumpaction(duration):
-       if request.method == 'GET':
-                      
-            if (duration) > 0:
-                
-                pump = Pump()
-                pump.waterchange(duration)
-                pump.close()
-                               
-                return f'pump started for {duration} seconds'
-            else:
-                'Nothing Found', 404
+# @app.route('/pumpaction/<int:duration>', methods=['GET'] )
+# def pumpaction(duration):
+#       if request.method == 'GET':
+#                      
+#            if (duration) > 0:
+#                
+#                pump = Pump()
+#                pump.waterchange(duration)
+#                pump.close()
+#                               
+#                return f'pump started for {duration} seconds'
+#            else:
+#                'Nothing Found', 404
             
-
-
-
-
 
 @app.route('/sensor/<int:id>', methods=['GET', 'PUT','DELETE'])
 def single_sensor(id):
