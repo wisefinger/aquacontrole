@@ -61,7 +61,7 @@ class TempSensor:
             
             
         #load the temperature measurements/values
-        for sensor in W1ThermSensor.get_available_sensors(): 
+        for sensor in W1ThermSensor.get_available_sensors():
             self.data[sensor.id]["value"] =  sensor.get_temperature()
             self.data[sensor.id]["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
        
