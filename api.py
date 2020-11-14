@@ -2,28 +2,12 @@
 from flask import Flask, redirect, render_template, request, url_for, jsonify
 from flask_cors import CORS, cross_origin
 from utils.TempSensor import TempSensor
-from utils.Pump import Pump
+#from utils.Pump import Pump
 
 app = Flask(__name__)
 
 #load sensor data
-sensor_list = [
-    {
-        "id" : "0517a2b17bff",
-        "name" : "temp5" ,
-        "type" : "temperature",
-        "location" : "discus rack below",
-        "unit" : "degree Celcius"
-    },
-    {
-        "id": "0220104528b1",
-        "name": "temp3",
-        "type": "temperature",
-        "location": "barrel",
-        "unit": "degree Celcius"
-    }
 
-    ]
 
 
 
@@ -87,10 +71,12 @@ def single_sensor(id):
             
 @app.route('/sensors', methods=['GET', 'POST'] )
 def sensors():
+    tempsensor = TempSensor()
     if request.method == 'GET':
-        print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
-        if len(sensor_list) > 0:
-            return jsonify(sensor_list)
+        data = tempsensor.getTemp()
+        #print(f'>> tempsensor 1 = {tempsensor.getTemp()}')
+        if len(data) > 0:
+            return jsonify(data)
         else:
             'Nothing Found', 404
 
