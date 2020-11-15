@@ -2,5 +2,5 @@ from utils.TempSensor import TempSensor
 
 print("starting test tempSensor class..........")
 sensor = TempSensor()
-print(sensor.getTemp())
+sensor.getAllTemp()
 print("ending test tempSensor class..........")

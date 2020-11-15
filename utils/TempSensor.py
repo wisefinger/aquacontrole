@@ -53,26 +53,36 @@ class TempSensor:
             }
         }
 
-    def getTemp(self):
+    def getAllTemp(self):
 
-        
-        for key,val in self.sensors.items():
-            record = {}
-            record["identifier"] = val.get('identifier')
-            record["name"] = val.get('name')
-            record["type"] = val.get('type')
-            record["location"] = val.get('location')
-            record["units"] = val.get('units')
-            self.data[key] = record
+            # load ref data sensors and add to new records
+            for key,val in self.sensors.items():
+                record = {}
+                record["identifier"] = val.get('identifier')
+                record["name"] = val.get('name')
+                record["type"] = val.get('type')
+                record["location"] = val.get('location')
+                record["units"] = val.get('units')
+                self.data[key] = record
+               
+         
+            #load the temperature measurements/values.
+            #loop through sensor values and add to the measurements to the correct id 
+            for sensor in W1ThermSensor.get_available_sensors():
+                    self.data[sensor.id]["value"] =  str(sensor.get_temperature())
+                    self.data[sensor.id]["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                    #print("Sensor %s has temperature %.2f" % (sensor.id, sensor.get_temperature()))
+                    #print(self.data[sensor.id])
             
-            
-        #load the temperature measurements/values
-        for sensor in W1ThermSensor.get_available_sensors():
-                self.data[sensor.id]["value"] =  sensor.get_temperature()
-                self.data[sensor.id]["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-                print("Sensor %s has temperature %.2f" % (sensor.id, sensor.get_temperature()))
-                print(self.data[sensor.id])   
-        return  self.data
+       
+            reply =""
+            for key,val in self.data.items():
+                 #print(f" value : {val.get('name')}")
+                 #>>> printen naar text
+                 message = "{'identifier': '"+val.get('identifier')+"',\n    'name': '"+val.get('name')+"',\n    'type': '"+val.get('type')+"',\n    'location': '"+val.get('location')+"',\n    'units': '" + val.get('units') + "',\n    'location': '"+val.get('location') +"',\n    'value': '" + val.get('value') + "',\n    'timestamp': '"+val.get('timestamp') + "'}"
+                 print(message)
+                 
+            return  self.data
 
 
 

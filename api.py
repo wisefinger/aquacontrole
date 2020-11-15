@@ -73,7 +73,7 @@ def single_sensor(id):
 def sensors():
     tempsensor = TempSensor()
     if request.method == 'GET':
-        data = tempsensor.getTemp()
+        data = tempsensor.getAllTemp()
         #print(f'>> tempsensor 1 = {tempsensor.getTemp()}')
         if len(data) > 0:
             return jsonify(data)
