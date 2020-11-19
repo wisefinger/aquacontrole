@@ -31,11 +31,11 @@ while not stopsignal:
     # measure tempsensor 1
     #print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
     # archive all folders older then
-    r =requests.get("http://192.168.0.223:5000/datastream/1")
-    print(f'request :{r.request} ')
-    print(f'status code :{r.status_code}')
-    print(f'headers :{r.headers}')
-    print(f'body : {r.text}')
+    #r =requests.get("http://192.168.0.223:5000/datastream/1")
+    #print(f'request :{r.request} ')
+    #print(f'status code :{r.status_code}')
+    #print(f'headers :{r.headers}')
+    #print(f'body : {r.text}')
     
     try:
         print("start archive from app.py")
@@ -52,7 +52,7 @@ while not stopsignal:
         print("No previous correct date was found, therefore pump is started")
         print('pump has not started today, action required')
         pumplogger.log("start pump")
-        #pump.waterchange(10)
+        pump.waterchange(10)
         pumplogger.log("stop pump")
     else:
         # If a previous date has been found check if the pump
@@ -65,7 +65,7 @@ while not stopsignal:
         else:
             print('pump has been running today no action required')
     #time.sleep(300)
-    time.sleep(300)        
+    time.sleep(10)        
 else:
     exit()
 actionlogger.log("stop main app.py")

@@ -25,13 +25,9 @@ class Pump:
     GPIO.output(relay1, GPIO.HIGH)
 
     def __init__(self):
-        None
+        print("load class Pump:..............")
+        
 
-    def start(self):
-        print("start pump")
-
-    def stop(self):
-        print("stop pump")
 
     def waterchange(self, duration):
         global relay1
