@@ -3,7 +3,8 @@ from datetime import datetime
 import time
 #from utils.TempLogger import TempLogger
 from w1thermsensor import W1ThermSensor
-import json 
+import json
+from json2html import *
 
 
 
@@ -55,7 +56,7 @@ class TempSensor:
             }
         }
 
-    def getAllTemp(self):
+    def getAllTempJson(self):
 
             # load ref data sensors and add to new records
             for key,val in self.sensors.items():
@@ -65,31 +66,42 @@ class TempSensor:
                 record["type"] = val.get('type')
                 record["location"] = val.get('location')
                 record["units"] = val.get('units')
-                self.data[key] = record
-               
+                self.data[key] = record    
          
             #load the temperature measurements/values.
             #loop through sensor values and add to the measurements to the correct id 
             for sensor in W1ThermSensor.get_available_sensors():
                     self.data[sensor.id]["value"] =  str(sensor.get_temperature())
                     self.data[sensor.id]["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+                 
+            # Serializing json    
+            json_object = json.dumps(self.data, indent = 4)   
+            #print(json_object)              
+            return  json_object
 
-            
-       
-            reply =""
-            for key,val in self.data.items():
-                 #print(f" value : {val.get('name')}")
-                 #>>> printen naar text
-                 message = "{'identifier': '"+val.get('identifier')+"',\n    'name': '"+val.get('name')+"',\n    'type': '"+val.get('type')+"',\n    'units': '" + val.get('units') + "',\n    'location': '"+val.get('location') +"',\n    'value': '" + val.get('value') + "',\n    'timestamp': '"+val.get('timestamp') + "'}"
-                 #print(message)
+    def getAllTempHtml(self):
+
+            # load ref data sensors and add to new records
+            for key,val in self.sensors.items():
+                record = {}
+                record["identifier"] = val.get('identifier')
+                record["name"] = val.get('name')
+                record["type"] = val.get('type')
+                record["location"] = val.get('location')
+                record["units"] = val.get('units')
+                self.data[key] = record    
+         
+            #load the temperature measurements/values.
+            #loop through sensor values and add to the measurements to the correct id 
+            for sensor in W1ThermSensor.get_available_sensors():
+                    self.data[sensor.id]["value"] =  str(sensor.get_temperature())
+                    self.data[sensor.id]["timestamp"] = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
                  
             # Serializing json    
             json_object = json.dumps(self.data, indent = 4)   
             #print(json_object)
-                 
-                 
-            return  json_object
-
+            
+            return  json2html.convert(json = json_object)
 
 
 

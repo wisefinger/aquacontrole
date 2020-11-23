@@ -1,14 +1,12 @@
-#from utils.TempSensor import TempSensor
-from json2html import *
+from utils.TempSensor import TempSensor
+
 
 print("starting test tempSensor class..........")
-#sensor = TempSensor()
-#print(sensor.getAllTemp())
-#del sensor
+sensor = TempSensor()
+infoFromJson = (sensor.getAllTempJson())
+print(infoFromJson)
+infoFromHtml = (sensor.getAllTempHtml())
+print(infoFromHtml)
+del sensor
+#print (json2html.convert(json = infoFromJson))
 print("ending test tempSensor class..........")
-
-infoFromJson = {
-        "name": "json2html",
-        "description": "Converts JSON to HTML tabular representation"
-}
-print (json2html.convert(json = infoFromJson))
