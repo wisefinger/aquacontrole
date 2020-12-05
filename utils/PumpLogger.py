@@ -4,24 +4,25 @@ import os.path
 from os import path
 class PumpLogger:
 
-    def __init__(self):
+    def __init__(self, id):
+        self.id = id
         #Check if the logfile alreay exist or not, and create a new file is none is present
-        if path.exists('logging/pump.log'):
+        if path.exists(f'logging/pump{self.id}.log'):
             None
         else:
-            with open('logging/pump.log', 'a') as f:
+            with open(f'logging/pump{self.id}.log', 'a') as f:
                 f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
                 f.write("\n")
     # append data at the end of the logfile
     def log(self,message):
         
-        if path.exists('logging/pump.log'):
-            with open('logging/pump.log', 'a') as f:
+        if path.exists(f'logging/pump{self.id}.log'):
+            with open(f'logging/pump{self.id}.log', 'a') as f:
                 f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: {message}')
                 f.write("\n")
                 
         else:
-            with open('logging/pump.log', 'a') as f:
+            with open(f'logging/pump{self.id}.log', 'a') as f:
                 f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
                 f.write("\n")
                 
@@ -30,9 +31,9 @@ class PumpLogger:
     # get last the last rundate of the logfile
     def getlatest(self):
         
-        if path.exists('logging/pump.log'):
+        if path.exists(f'logging/pump{self.id}.log'):
 
-            with open('logging/pump.log', 'r') as f:
+            with open(f'logging/pump{self.id}.log', 'r') as f:
                 for line in f:
                     line = line.strip(' \t\r\n')
                     if line.__contains__(('stop')):
@@ -47,7 +48,7 @@ class PumpLogger:
                 print('Empty logfile no previous history')
         
         else:
-            with open('logging/pump.log', 'a') as f:
+            with open(f'logging/pump{self.id}.log', 'a') as f:
                 f.write(f'{datetime.now().strftime("%d/%m/%Y:%X")}: new log created.')
                 f.write("\n")
             return None
