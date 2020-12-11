@@ -10,8 +10,6 @@ from utils.PumpLogger import PumpLogger
 from utils.ActionLogger import ActionLogger
 #import requests
 import utils.archive_file
-
-
 print(f'{datetime.now()} start main aquacontrole module.....................')
 # Create an instance to log actions into the generic /logger/action.log
 actionlogger = ActionLogger()
@@ -23,12 +21,11 @@ stopsignal = False
 # Create and instance for the temp sensor 1
 # tempsensor_1 = TempSensor()
 # Create an instance to log pump actions into the file /logger/pump.log
-
 # start action loop
 while not stopsignal:
     # execute actions
     print('sleep for 3 minutes')
-    time.sleep(1 * 5)
+    time.sleep(1 * 60)
     print('> start controle loop ')
     # measure tempsensor 1
     #print(f'>> tempsensor 1 = {tempsensor_1.getTemp()}')
@@ -58,20 +55,20 @@ while not stopsignal:
         # Check if the daily water change has already ran today. If not start it now
         # First check if a previous date was found
         if pumplogger.getlatest() == None:
-            print(f"No previous correct date was found for turn {number}, therefore pump is started")
+            print(f"No previous correct date was found for turn {cd number}, therefore pump is started")
             print(f'turn {number} has not started today, action required')
             if number ==1:
                 print("waiting 8h for start of cycle 1")
-                time.sleep(8 * 60 * 60)
+                time.sleep(1 * 1 * 60)
                 #time.sleep(1 * 1 * 20)
             else:
                 print("waiting 3h for start of cycle 1")
-                time.sleep(3 * 60 * 60)
+                time.sleep(1 * 1 * 60)
                 #time.sleep(1 * 1 * 20)
                 
             pumplogger.log("start pump")
-            #pump = Pump()
-            #pump.waterchange(10)
+            pump = Pump()
+            pump.waterchange(5* 60)
             pumplogger.log("stop pump")
         else:
             # If a previous date has been found check if the pump
@@ -80,11 +77,11 @@ while not stopsignal:
                 print(f'trun {number} has not started today, action required')
                 if number ==1:
                     print("waiting 8h for start of cycle 1")
-                    time.sleep(8 * 60 * 60)
+                    time.sleep(1 * 1 * 60)
                     #time.sleep(1 * 1 * 20)
                 else:
                     print("waiting 3h for start of cycle 1")
-                    time.sleep(2 * 60 * 60)
+                    time.sleep(1 * 1 * 60)
                     #time.sleep(1 * 1 * 20)
                     
                 pumplogger.log("start pump")
