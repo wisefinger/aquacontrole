@@ -53,7 +53,7 @@ while not stopsignal:
         
         pumplogger = PumpLogger(number)
         # Check if the daily water change has already ran today. If not start it now
-        # First check if a previous date was found
+        # First check if a previous date was found, if not found a new empty logfile will be created
         if pumplogger.getlatest() == None:
             print(f"No previous correct date was found for turn {cd number}, therefore pump is started")
             print(f'turn {number} has not started today, action required')

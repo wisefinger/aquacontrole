@@ -30,7 +30,7 @@ class PumpLogger:
 
     # get last the last rundate of the logfile
     def getlatest(self):
-        
+        #print(f' self:logging/pump{self.id}.log')
         if path.exists(f'logging/pump{self.id}.log'):
 
             with open(f'logging/pump{self.id}.log', 'r') as f:
@@ -45,7 +45,8 @@ class PumpLogger:
                 else:
                     return None
             except UnboundLocalError:
-                print('Empty logfile no previous history')
+                #print('Empty logfile no previous history')
+                pass
         
         else:
             with open(f'logging/pump{self.id}.log', 'a') as f:
