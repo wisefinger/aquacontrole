@@ -14,7 +14,7 @@ duration = 5
 # declare start hours (00h00 + x), first run will start at x hours
 start = 9
 # declare number of hours between runs
-pause = 4
+pause = 1
 
 print("DONT FORGET TO ADD THE ARCHIVING PROCESS TO A CRON JOB")
 print(f'> {datetime.now()} : start run watercycle process................')

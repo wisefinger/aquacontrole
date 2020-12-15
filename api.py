@@ -8,10 +8,6 @@ app = Flask(__name__)
 
 #load sensor data
 
-
-
-
-
 # code to handle datastream calls
 @app.route('/datastream/<int:id>', methods=['GET'] )
 @cross_origin() # allow all origins all methods.
@@ -73,10 +69,11 @@ def single_sensor(id):
 def sensors():
     tempsensor = TempSensor()
     if request.method == 'GET':
-        data = tempsensor.getAllTemp()
+        #data = tempsensor.getAllTempHtml()
+        data = tempsensor.getAllTempHtml()
         #print(f'>> tempsensor 1 = {tempsensor.getTemp()}')
         if len(data) > 0:
-            return jsonify(data)
+            return data
         else:
             'Nothing Found', 404
 
